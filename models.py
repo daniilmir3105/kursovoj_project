@@ -6,10 +6,14 @@ from xgboost import XGBRegressor
 
 class scoring(metaclass=ABCMeta):
     '''
-    In this class we will score MAE in various models. 
+    In this class are  some models to score MAE. 
     '''
 
     def decision(self, train_X, valid_X, train_y, valid_y):
+        '''
+        In this model we score MAE with Decision Tree Regressor.
+        '''
+
         self.train_X = train_X
         self.valid_X = valid_X
         self.train_y = train_y
@@ -23,6 +27,10 @@ class scoring(metaclass=ABCMeta):
         return mae
 
     def rand_forrest(self, train_X, valid_X, train_y, valid_y):
+        '''
+        In this function we score MAE with random forrests.
+        '''
+
         self.train_X = train_X
         self.valid_X = valid_X
         self.train_y = train_y
@@ -35,6 +43,10 @@ class scoring(metaclass=ABCMeta):
         return mae
 
     def grad_boost(self, train_X, valid_X, train_y, valid_y):
+        '''
+        In this function we score MAE with gradient boosting.
+        '''
+
         self.train_X = train_X
         self.valid_X = valid_X
         self.train_y = train_y
@@ -47,6 +59,10 @@ class scoring(metaclass=ABCMeta):
         return mae
 
     def lgbm(self, train_X, valid_X, train_y, valid_y):
+        '''
+        In this function we score MAE with .
+        '''
+
         self.train_X = train_X
         self.valid_X = valid_X
         self.train_y = train_y
