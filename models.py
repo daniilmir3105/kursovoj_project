@@ -3,6 +3,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
+import lightgbm as lgb
 
 class scoring(metaclass=ABCMeta):
     '''
@@ -68,4 +69,4 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        
+        #lgbm_model = lgb.train()

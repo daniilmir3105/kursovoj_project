@@ -10,4 +10,8 @@ y = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_bil
 
 X = data.drop(['Index', 'Year', 'Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters'], axis=1)
 
-train_X, valid_X, trai_y, valid_y = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
+train_X, valid_X, train_y, valid_y = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
+
+scoring_models = models.scoring()
+decision_tree_mae = scoring_models.decision(train_X, valid_X, train_y, valid_y)
+print('MAE by Decision Tree is ' + str(decision_tree_mae))
