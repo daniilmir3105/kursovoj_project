@@ -37,7 +37,7 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        forrest_model = RandomForestRegressor(random_state=1)
+        forrest_model = RandomForestRegressor(n_estimators=7, random_state=1, criterion='mae')
         forrest_model.fit(train_X, train_y)
         pred = forrest_model.predict(valid_X)
         mae = mean_absolute_error(valid_y, pred)
