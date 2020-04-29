@@ -4,7 +4,7 @@ import models
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\data_sets\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
-print(data.columns)
+#print(data.columns)
 
 y = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters
 
