@@ -20,7 +20,7 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        dec_model = DecisionTreeRegressor(max_leaf_nodes=7, random_state=0)
+        dec_model = DecisionTreeRegressor(max_leaf_nodes=11, random_state=0)
         dec_model.fit(train_X, train_y)
         pred = dec_model.predict(valid_X)
         mae = mean_absolute_error(valid_y, pred)
@@ -37,7 +37,7 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        forrest_model = RandomForestRegressor(n_estimators=7, random_state=1, criterion='mae')
+        forrest_model = RandomForestRegressor(n_estimators=11, random_state=1, criterion='mae')
         forrest_model.fit(train_X, train_y)
         pred = forrest_model.predict(valid_X)
         mae = mean_absolute_error(valid_y, pred)

@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr 29 21:35:33 2020
-
-@author: Daniil 
-"""
 import pandas as pd
 import statsmodels.api as sm
 from statsmodels.iolib.table import SimpleTable
@@ -23,14 +17,15 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             'World_proven_reserves_of_natural_gas_in_the_t_th_year_in_billion_cubic_meters', 
             'Worl_demand_for_natural_gas_in_the_t_th_year_in_billion_cubic_meters', 
             'Employment_in_the_gas_segment_in_million_in_the_t_th_year', 
-            'World_LNG_prices_in_the_t_th_year_in_dollars_billion_cubic_meters', 
+            #'World_LNG_prices_in_the_t_th_year_in_dollars_billion_cubic_meters', 
             'Investments_in_the_gas_segment_in_t_th_year_in_billion_dollar', 
             'World_oil_prices_in_the_t_th_year_in_billion_dollars_barrel', 
             'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
     
 for col in features:
     param = data[col]
-    test = sm.tsa.adfuller(param)
+    param1diff = param.diff(periods=1).dropna()
+    test = sm.tsa.adfuller(param1diff)
     print('adf: ', test[0])
     print('p-value: ', test[1])
     print('Critical values: ', test[4])
