@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import models
 
-path = r'C:\Users\Home\Documents\DANIIL\programming\python\data_sets\dataset_kurs.csv'
+path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
 #print(data.columns)
 
