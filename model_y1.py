@@ -24,9 +24,10 @@ print('MAE by Random Forest is ' + str(random_forests_mae))
 xgb_mae = scoring_models.grad_boost(train_X, valid_X, train_y, valid_y)
 print('MAE by Gradient boosting is ' + str(xgb_mae))
 
-model_y1 = RandomForestRegressor(n_estimators=7, )
+model_y1 = RandomForestRegressor(n_estimators=11)
 
 model_y1.fit(X, y)
 
-print('The best model is Random Forest.')
-print('Predictions are: ' + str(model_y1.predict(X.head())))
+if __name__ == '__main__':
+    print('The best model is Random Forest.')
+    print('Predictions are: ' + str(model_y1.predict(X.head())))

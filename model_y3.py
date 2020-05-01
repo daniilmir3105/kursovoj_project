@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import models
+from sklearn.ensemble import RandomForestRegressor
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
@@ -22,3 +23,11 @@ print('MAE by Random Forrest is ' + str(random_forests_mae))
 
 xgb_mae = scoring_models.grad_boost(train_X, valid_X, train_y, valid_y)
 print('MAE by Gradient boosting is ' + str(xgb_mae))
+
+model_y3 = RandomForestRegressor(n_estimators=11)
+
+model_y3.fit(X, y)
+
+if __name__ == '__main__':
+    print('The best model is Random Forest.')
+    print('Predictions are: ' + str(model_y3.predict(X.head())))
