@@ -1,5 +1,10 @@
-import pandas as pd 
-
+import pandas as pd
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.svm import SVR
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 
 dataset = pd.read_csv(path)
@@ -17,3 +22,6 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             'World_oil_prices_in_the_t_th_year_in_billion_dollars_barrel', 
             'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
 
+#print(dataset.head())
+
+print(dataset[features].corr())
