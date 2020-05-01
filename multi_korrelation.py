@@ -23,7 +23,6 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
 
 correlatoins = {}
-
 columns = features
 
 for col_a, col_b in itertools.combinations(columns, 2):
@@ -31,5 +30,4 @@ for col_a, col_b in itertools.combinations(columns, 2):
 
 result = pd.DataFrame.from_dict(correlatoins, orient='index')
 result.columns = ['PCC', 'p-value']
-
 print(result.sort_index())
