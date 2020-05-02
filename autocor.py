@@ -3,12 +3,9 @@ import statsmodels.api as sm
 from statsmodels.iolib.table import SimpleTable
 import numpy as np 
 from sklearn.metrics import r2_score
-#import ml_metrics as metrics
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
-#path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
-#print(data.columns)
 
 features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters',
             'World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters', 
@@ -24,10 +21,20 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             #'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
 
 def autocorr(x):
-    result = np.correlate(x, x, mode='full')
-    return result[result.size/2:]
+    result = np.correlate(x, x, mode='same')
+    return result
 
-if __name__ == "__main__":
-    x = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters
-    print('Autocorrelation index by ' + str(x) + ' ' + str(autocorr(x)))
+x = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters
+print('Autocorrelation index by Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters '+ str(autocorr(x)))
         
+x = data.World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters
+print('Autocorrelation index by World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr(x)))
+
+x = data.The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters
+print('Autocorrelation index by The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters ' + str(autocorr(x)))
+
+x = data.World_oil_production_in_the_t_th_year_in_billion_cubic_meters
+print('Autocorrelation index by World_oil_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr(x)))
+
+x = data.World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters
+print('Autocorrelation index by World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters ' + str(autocorr(x)))
