@@ -1,7 +1,7 @@
 import pandas as pd
 
-#path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
-path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
+path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
+#path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
 
 dataset = pd.read_csv(path)
 
