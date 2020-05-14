@@ -4,7 +4,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 import lightgbm as lgb
-#import 
+import catboost
 
 class scoring(metaclass=ABCMeta):
     '''
