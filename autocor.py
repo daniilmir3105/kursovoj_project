@@ -3,6 +3,7 @@ import statsmodels.api as sm
 from statsmodels.iolib.table import SimpleTable
 import numpy as np 
 from sklearn.metrics import r2_score
+from abc import ABCMeta
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
@@ -20,21 +21,34 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             #'World_oil_prices_in_the_t_th_year_in_billion_dollars_barrel', 
             #'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
 
-def autocorr(x):
-    result = np.correlate(x, x, mode='same')
-    return result
+class autocorr_an(metaclass=ABCMeta):
+    '''
+    In this metaclass we make autocorrelation analys.
+    '''
 
-x = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters
-print('Autocorrelation index by Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters '+ str(autocorr(x)))
-        
-x = data.World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters
-print('Autocorrelation index by World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr(x)))
+    def autocorr(self, y):
+        '''
+        This method will calculate autocorrelation indexes.
+        '''
 
-x = data.The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters
-print('Autocorrelation index by The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters ' + str(autocorr(x)))
+        result = np.correlate(y, y, mode='same')
+        return result
 
-x = data.World_oil_production_in_the_t_th_year_in_billion_cubic_meters
-print('Autocorrelation index by World_oil_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr(x)))
+autocorr_index = autocorr_an()
 
-x = data.World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters
-print('Autocorrelation index by World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters ' + str(autocorr(x)))
+# return autocorrelation indexes
+if __name__ == '__main__':
+    y_1 = data.Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters
+    print('Autocorrelation index by Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in_billion_cubic_meters '+ str(autocorr_index.autocorr(y_1)))
+            
+    y_2 = data.World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters
+    print('Autocorrelation index by World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr_index.autocorr(y_2)))
+
+    y_3 = data.The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters
+    print('Autocorrelation index by The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters ' + str(autocorr_index.autocorr(y_3)))
+
+    y_4 = data.World_oil_production_in_the_t_th_year_in_billion_cubic_meters
+    print('Autocorrelation index by World_oil_production_in_the_t_th_year_in_billion_cubic_meters ' + str(autocorr_index.autocorr(y_4)))
+
+    y_5 = data.World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters
+    print('Autocorrelation index by World_exports_of_shale_gas_in_the_t_th_year_million_cubic_meters ' + str(autocorr_index.autocorr(y_5)))

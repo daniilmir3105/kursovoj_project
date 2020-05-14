@@ -1,4 +1,5 @@
 import pandas as pd
+from abc import ABCMeta
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 #path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
@@ -18,6 +19,21 @@ features = ['Export_of_natural_gas_of_the_Russian_Federation_in_the_t_th_year_in
             'World_oil_prices_in_the_t_th_year_in_billion_dollars_barrel', 
             'World_production_of_shale_gas_in_the_t_th_year_in_billion_cubic_meters']
 
-result = dataset[features].corr()
+class scoring(metaclass=ABCMeta):
+    '''
+    In this metaclass will be method, that will make a correlation table.
+    '''
 
-print(result)
+    def score_corr(self, data):
+        '''
+        In this method will be method, that will make a correlation table.
+        '''
+
+        self.data = data
+        result = data[features].corr()
+        return result
+
+cor_result = scoring()
+
+if __name__ == '__main__':
+    print(cor_result.score_corr(dataset[features]))

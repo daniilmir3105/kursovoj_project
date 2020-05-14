@@ -3,8 +3,8 @@ from sklearn.model_selection import train_test_split
 import models
 from sklearn.ensemble import RandomForestRegressor
 
-#path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
-path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
+path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
+#path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
 #print(data.columns)
 features = ['World_proven_reserves_of_natural_gas_in_the_t_th_year_in_billion_cubic_meters',
