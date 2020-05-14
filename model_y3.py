@@ -4,12 +4,13 @@ import models
 from sklearn.ensemble import RandomForestRegressor
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
+path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
 #print(data.columns)
 
 y = data.The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters
-
-X = data.drop(['Index', 'Year', 'The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters'], axis=1)
+#X = data.drop(['Index', 'Year', 'The_world_price_of_natural_gas_in_the_t_th_year_in_dollars_billion_cubic_meters'], axis=1)
+X = data.World_LNG_prices_in_the_t_th_year_in_dollars_billion_cubic_meters
 
 train_X, valid_X, train_y, valid_y = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
 

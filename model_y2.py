@@ -3,13 +3,14 @@ from sklearn.model_selection import train_test_split
 import models
 from sklearn.ensemble import RandomForestRegressor
 
-path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
+#path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
+path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
 #print(data.columns)
 
 y = data.World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters
-
-X = data.drop(['Index', 'Year', 'World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters'], axis=1)
+X = data.World_proven_reserves_of_natural_gas_in_the_t_th_year_in_billion_cubic_meters
+#X = data.drop(['Index', 'Year', 'World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters'], axis=1)
 
 train_X, valid_X, train_y, valid_y = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
 
