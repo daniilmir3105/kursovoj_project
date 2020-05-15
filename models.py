@@ -62,7 +62,7 @@ class scoring(metaclass=ABCMeta):
 
     def lgbm(self, train_X, valid_X, train_y, valid_y):
         '''
-        In this function we score MAE with .
+        In this function we score MAE with lightgbm.
         '''
 
         self.train_X = train_X
@@ -71,3 +71,14 @@ class scoring(metaclass=ABCMeta):
         self.valid_y = valid_y
 
         #lgbm_model = lgb.train()
+
+    def categorical_boosting(self, train_X, valid_X, train_y, valid_y):
+        '''
+        In this function we score MAE with categorical boosting(Yandex Technology).
+        '''
+
+        self.train_X = train_X
+        self.valid_X = valid_X
+        self.train_y = train_y
+        self.valid_y = valid_y
+
