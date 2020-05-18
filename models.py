@@ -87,8 +87,10 @@ class scoring(metaclass=ABCMeta):
 
         model = lgbm.train(parameters, tests_data, valid_sets=tests_data, num_boost_round=20, 
                 early_stopping_rounds=100)
-
-
+        
+        y_pred = model.predict(valid_X, num_iteration=model.best_iteration)
+        mae = mean_absolute_error(valid_y, y_pred)
+        return mae
 
     def categorical_boosting(self, train_X, valid_X, train_y, valid_y):
         '''
@@ -100,3 +102,9 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
+        cat_model = catboost.CatBoostClassifier()
+        cat_model.fit(train_X, train_y)
+        predictions = cat_model.predict(valid_X)
+        mae = mean_absolute_error(valid_y, predictions)
+        return mae 
+    
