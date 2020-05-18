@@ -3,7 +3,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
-import lightgbm as lgb
+import lightgbm as lgbm
 import catboost
 
 class scoring(metaclass=ABCMeta):
@@ -70,7 +70,25 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        #lgbm_model = lgb.train()
+        train_data = lgbm.Dataset(train_X, label=train_y)
+        tests_data = lgbm.Dataset(valid_X, label=valid_y)
+
+        parameters = {
+        'boosting_type': 'gbdt',
+        'objective': 'regression',
+        'metric': {'l2', 'l1'},
+        'num_leaves': 31,
+        'learning_rate': 0.05,
+        'feature_fraction': 0.9,
+        'bagging_fraction': 0.8,
+        'bagging_freq': 5,
+        'verbose': 0
+        }
+
+        model = lgbm.train(parameters, tests_data, valid_sets=tests_data, num_boost_round=20, 
+                early_stopping_rounds=100)
+
+
 
     def categorical_boosting(self, train_X, valid_X, train_y, valid_y):
         '''
