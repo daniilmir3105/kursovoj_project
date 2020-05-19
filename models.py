@@ -70,8 +70,8 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        train_data = lgbm.Dataset(train_X, label=train_y)
-        tests_data = lgbm.Dataset(valid_X, label=valid_y)
+        train_data = lgbm.Dataset(train_X, train_y)
+        tests_data = lgbm.Dataset(valid_X, valid_y, reference=train_data)
 
         parameters = {
         'boosting_type': 'gbdt',
@@ -85,8 +85,7 @@ class scoring(metaclass=ABCMeta):
         'verbose': 0
         }
 
-        model = lgbm.train(parameters, tests_data, valid_sets=tests_data, num_boost_round=20, 
-                early_stopping_rounds=100)
+        model = lgbm.train(parameters, train_data, valid_sets=tests_data, num_boost_round=1)
         
         y_pred = model.predict(valid_X, num_iteration=model.best_iteration)
         mae = mean_absolute_error(valid_y, y_pred)
@@ -107,4 +106,3 @@ class scoring(metaclass=ABCMeta):
         predictions = cat_model.predict(valid_X)
         mae = mean_absolute_error(valid_y, predictions)
         return mae 
-    

@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import models
 from sklearn.ensemble import RandomForestRegressor
+import catboost
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 #path = r'D:\Daniil\programming\kursovoj_project\dataset_kurs.csv'
@@ -28,10 +29,17 @@ print('MAE by Random Forrest is ' + str(random_forests_mae))
 xgb_mae = scoring_models.grad_boost(train_X, valid_X, train_y, valid_y)
 print('MAE by Gradient boosting is ' + str(xgb_mae))
 
-model_y5 = RandomForestRegressor(n_estimators=11)
+lgbm_mae = scoring_models.lgbm(train_X, valid_X, train_y, valid_y)
+print('MAE by Lightgbm is ' + str(lgbm_mae))
+
+cat_mae = scoring_models.categorical_boosting(train_X, valid_X, train_y, valid_y)
+print('MAE by Categorical boosting is ' + str(cat_mae))
+
+model_y5 = catboost.CatBoostClassifier()
 
 model_y5.fit(X, y)
 
 if __name__ == '__main__':
-    print('The best model is Random Forest.')
+    print('The best model is Categorical boosting.')
     print('Predictions are: ' + str(model_y5.predict(X.head())))
+    

@@ -27,7 +27,13 @@ print('MAE by Random Forest is ' + str(random_forests_mae))
 xgb_mae = scoring_models.grad_boost(train_X, valid_X, train_y, valid_y)
 print('MAE by Gradient boosting is ' + str(xgb_mae))
 
-model_y1 = RandomForestRegressor(n_estimators=11)
+lgbm_mae = scoring_models.lgbm(train_X, valid_X, train_y, valid_y)
+print('MAE by Lightgbm is ' + str(lgbm_mae))
+
+cat_mae = scoring_models.categorical_boosting(train_X, valid_X, train_y, valid_y)
+print('MAE by Categorical boosting is ' + str(cat_mae))
+
+model_y1 = RandomForestRegressor()
 
 model_y1.fit(X, y)
 

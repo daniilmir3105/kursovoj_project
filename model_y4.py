@@ -8,8 +8,9 @@ path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_sc
 data = pd.read_csv(path, encoding='utf-8')
 #print(data.columns)
 
+features = ['World_proven_reserves_of_natural_gas_in_the_t_th_year_in_billion_cubic_meters']
 y = data.World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters
-X = data.World_proven_reserves_of_natural_gas_in_the_t_th_year_in_billion_cubic_meters
+X = data[features]
 #X = data.drop(['Index', 'Year', 'World_natural_gas_production_in_the_t_th_year_in_billion_cubic_meters'], axis=1)
 
 train_X, valid_X, train_y, valid_y = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
@@ -25,7 +26,13 @@ print('MAE by Random Forrest is ' + str(random_forests_mae))
 xgb_mae = scoring_models.grad_boost(train_X, valid_X, train_y, valid_y)
 print('MAE by Gradient boosting is ' + str(xgb_mae))
 
-model_y4 = RandomForestRegressor(n_estimators=11)
+lgbm_mae = scoring_models.lgbm(train_X, valid_X, train_y, valid_y)
+print('MAE by Lightgbm is ' + str(lgbm_mae))
+
+cat_mae = scoring_models.categorical_boosting(train_X, valid_X, train_y, valid_y)
+print('MAE by Categorical boosting is ' + str(cat_mae))
+
+model_y4 = RandomForestRegressor()
 
 model_y4.fit(X, y)
 
