@@ -35,7 +35,7 @@ print('MAE by Lightgbm is ' + str(lgbm_mae))
 cat_mae = scoring_models.categorical_boosting(train_X, valid_X, train_y, valid_y)
 print('MAE by Categorical boosting is ' + str(cat_mae))
 
-model_y5 = catboost.CatBoostClassifier()
+model_y5 = catboost.CatBoostClassifier(iterations=20)
 
 model_y5.fit(X, y)
 
