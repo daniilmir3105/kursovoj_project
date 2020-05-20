@@ -101,7 +101,7 @@ class scoring(metaclass=ABCMeta):
         self.train_y = train_y
         self.valid_y = valid_y
 
-        cat_model = catboost.CatBoostClassifier()
+        cat_model = catboost.CatBoostClassifier(iterations=20)
         cat_model.fit(train_X, train_y)
         predictions = cat_model.predict(valid_X)
         mae = mean_absolute_error(valid_y, predictions)
