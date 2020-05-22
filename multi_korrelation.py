@@ -1,6 +1,5 @@
 import pandas as pd 
 import numpy as np
-#from libraries.settings import *
 from scipy.stats.stats import pearsonr
 import itertools
 from abc import ABCMeta

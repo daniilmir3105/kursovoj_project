@@ -3,7 +3,6 @@ import statsmodels.api as sm
 from statsmodels.iolib.table import SimpleTable
 import numpy as np 
 from sklearn.metrics import r2_score
-import numpy as np 
 
 path = r'C:\Users\Home\Documents\DANIIL\programming\python\Code\projekts\data_science\models\kursovoj_project\dataset_kurs.csv'
 data = pd.read_csv(path, encoding='utf-8')
